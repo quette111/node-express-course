@@ -1,4 +1,4 @@
-const readline = require('node:readline'); //found after a little research 
+const readline = require('node:readline'); //found after a little research, allows for user input in the terminal  
 
 const greeting = 'Hello, this is my first Node.js program!';
 const correct = 'You guessed right!';
