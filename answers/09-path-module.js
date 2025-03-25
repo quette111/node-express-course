@@ -5,3 +5,4 @@ const pathTo = (...segments) => {
 }
 
 console.log(pathTo(__dirname, 'content', 'subfolder', 'test.txt'))
+
