@@ -1,0 +1,48 @@
+#header {
+  background-color: bisque;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 0;
+  border: 0.5px black solid;
+}
+
+button {
+  cursor: pointer;
+  height: 10vh;
+  width: 20vh;
+  margin-left: 45%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: rgb(219, 2, 6);
+  color: white;
+  border-radius: 50px;
+}
+
+#dataOutput {
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+}
+
+#cardWrap {
+  background-color: rgba(189, 189, 189, 0.725);
+  margin: 2%;
+  height: 300px;
+  width: 200px;
+  text-align: center;
+  border: solid black 1px;
+  padding: 5%;
+}
+#name {
+  font-size: 30px;
+}
+
+#price {
+  font-size: 20px;
+}
+
+#desc {
+  font-size: 15px;
+}
