@@ -2,15 +2,16 @@ console.log('Express Tutorial')
 
 const express = require('express')
 const app = express()
-const PORT = 5009
-const { products } = require("./data");
+const cookieParser = require('cookie-parser')
+const PORT = 5011
+const { products, people } = require("./data");
 const peopleRouter = require('./routes/people');
 const router = require('./routes/people');
 app.use(express.static('public'))
-
 app.use(express.urlencoded({ extended: false }));
 app.use(express.json());
 app.use("/api/v1/people", peopleRouter)
+app.use(cookieParser());
 
 
 
@@ -25,6 +26,58 @@ const logger = function (req, res, next) {
 
 app.use(logger)
 
+app.get("/test", (req, res) => {
+
+    app.use(auth)
+    return res.status(200).json({ message: `Welcome, ${req.user}` })
+    
+    })
+
+app.post('/logon', (req, res) => {
+    console.log(people)
+    const { name } = req.body
+    const user = people.find(person => person.name.toLowerCase() === name.toLowerCase());
+
+    if (user) {
+        res.cookie("name", name, { httpOnly: true, path: '/' })
+        res.status(201).json({ message: `Hello ${name}` })
+    }
+    else {
+        return res.status(400).json({ message: 'Name not found' })
+    }
+})
+
+app.delete('/logoff'), (req, res) => {
+    const { name } = req.body
+    const user = people.find(person => person.name.toLowerCase() === name.toLowerCase());
+
+    if (user) {
+        res.clearCookie("name")
+        res.status(200).json({ message: ` ${name} has logged out` })
+    }
+    else {
+        return res.status(400).json({ message: 'Name not found' })
+    }
+}
+
+const auth = ((req, res, next) => {
+    console.log('Cookies:', req.cookies);
+
+    if (req.cookies.name) {
+        req.user = req.cookies.name
+        next()
+    }
+    else {
+        return res.status(401).json({ message: 'unauthorized' })
+    }
+
+
+})
+
+
+
+
+
 app.get('/api/v1/test', (req, res) => {
     res.json({ message: "It worked!" });
 })
@@ -34,15 +87,8 @@ app.get('/api/v1/products', (req, res) => {
 })
 
 
-/*app.get('/api/v1/people', (req, res) => {
-res.json(people)
-})
 
-app.post('/api/v1/people', (req, res) => {
-    people.push({ id: people.length + 1, name: req.body.name });
-    res.end()
-})
-*/
+
 app.get('/api/v1/products/:productID', (req, res, err) => {
     if (err) {
         res.status(404).json({ message: "That product was not found." })
