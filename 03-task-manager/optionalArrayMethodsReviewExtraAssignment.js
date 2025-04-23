@@ -126,9 +126,17 @@ object.behavior()
 // problem related to these names, and then implement the solution. The
 // challenges are:
 //
+const names = [
+  'Dimitry SantiAgo',
+  'Carlos d. Perez',
+  'tam  person',
+  'Mariana Gomez',
+  'Amy You'
+];
+
 // - Create a new array with only each person's last name
 // - Filter names that don't match the format "<first> <last>"
-//   - Should remove Tam because she has a double-space
+//   - Should remove Tam because she has a double-space 
 //   - Should remove Carlow because he has a middle-name
 //   - Should also remove names like:
 //     - "Timothy      Cook"
@@ -136,10 +144,25 @@ object.behavior()
 //     - "Timmy-Turner"
 //     - "Billy\nBob"
 //     - etc.
+
+
+
+let newer = names.map((name)=>{
+  
+  let ya = name.split(" ") 
+  return ya.pop()
+  
+})
+console.log(newer)
+
+
 // - Create a new array where everyone's name is converted to "Title Case"
 //   - The first character of each word should be uppercase
 //   - All other characters in the word should be lowercase
 //   - expected output is ['Dimitry Santiago', 'Carlos D. Perez', 'Tam Person', ...]
+
+
+
 // - Last Challenge:
 //     Remove names with the wrong format
 //     AND change it to "Title Case"
@@ -149,13 +172,6 @@ object.behavior()
 // For an extra assignment, you may implement these yourself! Include your
 // changes to this file with your MR for week 3.
 
-const names = [
-  'Dimitry SantiAgo',
-  'Carlos d. Perez',
-  'tam  person',
-  'Mariana Gomez',
-  'Amy You'
-];
 
 ///////////////////////////////////////////////////////////////////////////////
 //// put your answers above if you wish to do the challenges on your own //////
