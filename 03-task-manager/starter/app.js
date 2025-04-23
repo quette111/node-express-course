@@ -5,16 +5,17 @@ const app = express()
 const tasks = require('./routes/task')
 require('dotenv').config()
 //middelware
- app.use(express.json())
+const notFound = require('../middleware/notFound.js');
+const errorHandler = require('../middleware/errorhandler.js');
+
+app.use(express.json())
 
 
 // routes 
-app.get('/hello', (req, res) => {
-    res.send('Task Manager App')
-})
 
 app.use('/api/v1/tasks', tasks)
-
+app.use(notFound)
+app.use(errorHandler)
  const port = 3000
 
 const start = async () => {
