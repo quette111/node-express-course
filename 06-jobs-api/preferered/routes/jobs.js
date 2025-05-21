@@ -1,6 +1,6 @@
 const express = require('express')
 const liftRouter = express.Router() 
-const auth = require('../middleware/authentication')
+
 const  { updateLift, 
     deleteLift, 
     getAllLifts, 
@@ -8,7 +8,10 @@ const  { updateLift,
     createLift } = require('../controllers/lifts')
 
 
+liftRouter.route('/').post(createLift).get(getAllLifts)
 
-liftRouter.post('/', createLift)
+liftRouter.route('/:id').get(getLift).delete(deleteLift).patch(updateLift)
+
+
 
 module.exports = liftRouter

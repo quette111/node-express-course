@@ -19,11 +19,11 @@ const LiftSchema = new mongoose.Schema({
         require:[true, 'Please provide perceived exertion 1-10'],
         enum:[1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
     },
-    /*createdBy:{
+    createdBy:{
             type:mongoose.Types.ObjectId,
             ref:'NewLifter',
             required:[true, 'Please provide user']
-        }*/
+        }
 }, { timestamps:true })
 
 
