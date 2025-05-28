@@ -41,8 +41,9 @@ app.use('/api/v1/auth', authRouter)
 app.use(notFoundMiddleware);
 app.use(errorHandlerMiddleware);
 
+app.use(express.static("public"));
+
 const PORT = process.env.PORT || 3000
-app.get('/', (req, res)=> {res.send('HELLO')})
 const start = async () => {
   try{
     await connectMongoose(process.env.MONGO_URI, console.log('Connected to DB'))
